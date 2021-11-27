@@ -264,6 +264,7 @@
 
 .btn-inline {
   border: none;
+
   color: var(--color-primary);
   font-size: inherit;
   border-bottom: var(--line);
@@ -272,6 +273,11 @@
   background-color: transparent;
   cursor: pointer;
   transition: all 0.2s;
+
+  & span {
+    margin-left: 3px;
+    transition: all 0.2s;
+  }
 
   &:hover {
     animation: pulsate 1s infinite;
@@ -376,9 +382,12 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
+  overflow: hidden;
 
   &__text {
     margin-bottom: 2rem;
+    z-index: 10;
+    position: relative; //z-index doesn't work if you dont set position
   }
 
   &__user {
@@ -423,5 +432,73 @@
     font-size: 20rem;
     color: var(--color-grey-light-2);
     font-family: sans-serif;
+    z-index: 1;
+  }
+}
+
+////////////////////////////
+//CTA
+
+.cta {
+  padding: 3.5rem 0;
+  text-align: center;
+
+  &__book-now {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+  }
+}
+
+////////////////////////////
+//CTA BUTTON
+
+.btn {
+  font-size: 1.5rem;
+  border: none;
+  font-weight: 300;
+  text-transform: uppercase;
+  border-radius: 100px;
+  background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  &__visible {
+    display: inline-block;
+    padding: 2rem 7.5rem;
+    height: 100%;
+    width: 100%;
+    transition: all 0.2s;
+  }
+
+  &__invisible {
+    display: inline-block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: -100%;
+    padding: 2rem;
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
+  }
+
+  &:hover &__visible {
+    transform: translateY(100%);
+  }
+
+  &:hover &__invisible {
+    top: 0;
+  }
+
+  &:focus {
+    outline: none;
+    animation: pulsate 1s infinite;
   }
 }
